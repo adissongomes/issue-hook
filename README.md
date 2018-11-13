@@ -1,14 +1,46 @@
+# Guia para executar
+
+**Requisitos para executar a aplica√ß√£o:**
+- Java 8
+- Docker
+
+A aplica√ß√£o foi desenvolvida sobre o Java 8 com Spring Boot 2.1.0 e Lombok*. 
+O build √© efetuado atrav√©s do Gradle 4.8 (wrapper est√° na aplica√ß√£o).
+
+>\* Lombok utilizado para facilitar criacao de builders, 
+getters e setters para classes de dom√≠nio. 
+Para uso com IDEs, consulte a [documenta√ß√£o](https://projectlombok.org/setup/overview)
+
+Antes de executar a aplica√ß√£o, √© necess√°rio levantar o Postgresql. Para isso
+executar o seguinte comando no shell:
+```
+docker-compose up -d 
+```
+Isso far√° o download da imagem postgres:9.6.
+
+Ap√≥s o container postgres estiver up, executar a seguinte linha de comando:
+```
+./gradlew build
+```
+Isso far√° o build da aplica√ß√£o caso os testes criados executem sem erros.
+
+Ap√≥s o build, basta executar a aplica√ß√£o atrav√©s do comando:
+```
+java -jar build/libs/octo.jar
+```
+
+
 # Octo Events
 
-Octo Events È uma aplicaÁ„o que recebe eventos do Github Events via webhooks e os expıe via API para uso futuro.
+Octo Events √© uma aplica√ß√£o que recebe eventos do Github Events via webhooks e os exp√µe via API para uso futuro.
 
 ![alt text](imgs/octo_events.png)
 
- O teste consiste na construÁ„o de 2 endpoints:
+ O teste consiste na constru√ß√£o de 2 endpoints:
 
 ## 1. Endpoint Webhook
 
-O endpoint Webhook recebe eventos do Github e os salva no banco. A fim de implement·-lo, leia os seguintes docs:
+O endpoint Webhook recebe eventos do Github e os salva no banco. A fim de implement√°-lo, leia os seguintes docs:
 
 * Webhooks Overview: https://developer.github.com/webhooks/ 
 * Creating Webhooks : https://developer.github.com/webhooks/creating/
@@ -17,7 +49,7 @@ O endpoint deve ser disponibilizado em `/events`
 
 ## 2. Endpoint Events 
 
-O endpoint Events ir· expor eventos por uma API que os filtrar· atravÈs do n˙mero da issue:
+O endpoint Events ir√° expor eventos por uma API que os filtrar√° atrav√©s do n√∫mero da issue:
 
 **Request:**
 
@@ -33,9 +65,9 @@ O endpoint Events ir· expor eventos por uma API que os filtrar· atravÈs do n˙mer
 ]
 ```
 
-**InstruÁıes de integraÁ„o com o Github **
+**Instru√ß√µes de integra√ß√£o com o Github **
 
-* Dica: VocÍ pode usar o ngrok (https://ngrok.com/) para instalar / debugar as chamadas do webhook. Ele gera uma URL p˙blica que ir· rotear para sua m·quina:
+* Dica: Voc√™ pode usar o ngrok (https://ngrok.com/) para instalar / debugar as chamadas do webhook. Ele gera uma URL p√∫blica que ir√° rotear para sua m√°quina:
 
    $ sudo ngrok http 4000 
 
@@ -45,11 +77,11 @@ O endpoint Events ir· expor eventos por uma API que os filtrar· atravÈs do n˙mer
 
 ![alt text](imgs/add_webhook.png)
  
-**ObservaÁıes finais**
+**Observa√ß√µes finais**
 
-* Use qualquer biblioteca ou framework que quiser, vocÍ n„o precisa fazer nada "do zero";
-* À obrigatÛrio escrever testes, use seu framework favorito pra isso;
+* Use qualquer biblioteca ou framework que quiser, voc√™ n√£o precisa fazer nada "do zero";
+* √ã obrigat√≥rio escrever testes, use seu framework favorito pra isso;
 * Use o Postgres 9.6 como banco;
-* Adicione um README.md com instruÁıes para executar o projeto.
-* Executaremos seu cÛdigo com a ˙ltima vers„o do Java ou Kotlin (se usar);
+* Adicione um README.md com instru√ß√µes para executar o projeto.
+* Executaremos seu c√≥digo com a √∫ltima vers√£o do Java ou Kotlin (se usar);
 * Sucesso! :-)
