@@ -1,0 +1,9 @@
+version: '3.1'
+services:
+  postgres:
+    image: "postgres:9.6"
+    environment:
+      POSTGRES_USER: octo
+      POSTGRES_PASSWORD: octo
+    ports:
+      - 5432:5432

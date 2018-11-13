@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/octo
+    username: octo
+    password: octo
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp.use_jdbc_metadata_defaults: false
+    generate-ddl: true
+    show-sql: true
+
+logging:
+  level:
+    org.springframework.web: debug
