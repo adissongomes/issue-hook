@@ -19,6 +19,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "event_seq")
     @SequenceGenerator(name="event_seq", sequenceName = "event_seq_id", allocationSize = 1)
+    @JsonIgnore
     private Long id;
 
     private String action;
@@ -26,10 +27,10 @@ public class Event {
     @JsonProperty("created_at")
     private LocalDateTime createdAt;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="issue_id", referencedColumnName = "id",
             foreignKey = @ForeignKey(name = "fk_issue"))
+    @JsonIgnore
     private Issue issue;
 
 }

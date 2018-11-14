@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    org.springframework.web: debug
+    org.springframework.data.jpa: debug

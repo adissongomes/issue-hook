@@ -1,5 +1,6 @@
 package com.adissongomes.recrutamento.resources;
 
+import com.adissongomes.recrutamento.exceptions.IssueNotFoundException;
 import com.adissongomes.recrutamento.services.IssueService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,12 @@ public class EventsResource {
     }
 
     @GetMapping("/{issueId}/events")
-    public ResponseEntity hook(@PathVariable("issueId") Long issueId) {
-        return ResponseEntity.ok(this.service.fetchEvents(issueId));
+    public ResponseEntity fetchEventsByIssue(@PathVariable("issueId") Long issueId) {
+        try {
+            return ResponseEntity.ok(this.service.fetchEvents(issueId));
+        } catch (IssueNotFoundException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
     }
 
 }

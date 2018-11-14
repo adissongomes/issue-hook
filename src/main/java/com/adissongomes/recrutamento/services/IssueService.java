@@ -3,12 +3,12 @@ package com.adissongomes.recrutamento.services;
 import com.adissongomes.recrutamento.domains.issue.Event;
 import com.adissongomes.recrutamento.domains.issue.Issue;
 import com.adissongomes.recrutamento.domains.issue.IssueRepository;
+import com.adissongomes.recrutamento.exceptions.IssueNotFoundException;
 import com.adissongomes.recrutamento.resources.requests.EventPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -28,7 +28,7 @@ public class IssueService {
         }
 
         Issue issue = repository.findById(payload.getIssue().getNumber()).
-                orElse(null);;
+                orElse(null);
 
         if (issue != null) {
             issue.setUpdatedAt(payload.getIssue().getUpdatedAt());
@@ -56,9 +56,7 @@ public class IssueService {
     }
 
     public List<Event> fetchEvents(Long issueId) {
-        Issue issue = repository.findById(issueId).get();
-        if (issue == null)
-            return new ArrayList<>();
+        Issue issue = repository.findById(issueId).orElseThrow(() -> new IssueNotFoundException(issueId));
         return issue.getEvents();
     }
 

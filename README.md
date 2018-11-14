@@ -1,8 +1,8 @@
 # Guia para executar
 
 **Requisitos para executar a aplicação:**
-- Java 8
-- Docker
+* Java 8
+* Docker
 
 A aplicação foi desenvolvida sobre o Java 8 com Spring Boot 2.1.0 e Lombok*. 
 O build é efetuado através do Gradle 4.8 (wrapper está na aplicação).
